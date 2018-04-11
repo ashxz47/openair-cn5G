@@ -94,6 +94,37 @@ decode_ue_network_capability (
   return decoded;
 }
 
+int decode_ue_req_nssai(UeReqNssai *uereqnssai, uint8_t iei, uint8_t *buffer, uint32_t len)
+{
+  int                                     decoded = 0;
+  uint8_t                                 ielen = 0;
+
+  if (iei > 0) {
+      CHECK_IEI_DECODER (iei, *buffer);
+      decoded++;
+    }
+
+  DECODE_U8 (buffer + decoded, ielen, decoded);
+  memset (uereqnssai, 0, sizeof (req_nssai_t));
+  OAILOG_INFO (LOG_NAS_EMM, "decode_ue_network_capability len = %d\n", ielen);
+  CHECK_LENGTH_DECODER (len - decoded, ielen);
+  
+  uereqnssai->snssai.sst = *(buffer + decoded);
+  decoded++;
+  uereqnssai->snssai.sd = *(buffer + decoded);
+  decoded++;
+ 
+  OAILOG_INFO (LOG_NAS_EMM, "uereqnssai decoded=%u\n", decoded);
+
+  if ((ielen + 2) != decoded) {
+    decoded = ielen + 1 + (iei > 0 ? 1 : 0) /* Size of header for this IE */ ;
+    OAILOG_INFO (LOG_NAS_EMM, "uereqnssai then decoded=%u\n", decoded);
+  }
+
+  return decoded;
+
+}
+
 int
 encode_ue_network_capability (
   UeNetworkCapability * uenetworkcapability,

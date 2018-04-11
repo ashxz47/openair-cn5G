@@ -304,6 +304,27 @@ typedef struct ue_security_capability_s {
 #define T3489_DEFAULT_VALUE            4
 #define T3495_DEFAULT_VALUE            8
 
+//==============================================================================
+// Annex 0 : 5G element
+//==============================================================================
+/* begin of 5G element (23.501) */
+
+#define UE_NSSAI_MINIMUM_LENGTH 1
+#define UE_NSSAI_MAXIMUM_LENGTH 7
+
+typedef struct req_snssai {
+  /* Requested Single Network slice selection assistant information - S-NSSAI */
+  uint8_t sst; // slice/service type
+  uint8_t sd; // slice differentiator
+} req_snssai_t;
+
+typedef struct {
+  /* Requested Network slice selection assistant information - NSSAI */
+  req_snssai_t snssai;
+} req_nssai_t;
+
+/* end of 5G element (23.501) */
+
 
 //==============================================================================
 // Annex A (informative): Cause values for EPS mobility management
