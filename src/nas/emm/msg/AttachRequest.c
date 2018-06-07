@@ -70,11 +70,13 @@ decode_attach_request (
   } else
     decoded += decoded_result;
 
-    buffer = buffer + decoded;
+/* buffer data */
+// buffer = buffer + decoded;
 // while (buffer)
 //   {
 //        buffer++;
 //   }
+/* buffer data ends*/
 
   /*
    * Decoding optional fields
@@ -90,13 +92,14 @@ decode_attach_request (
 
     switch (ieiDecoded) {
 
+  /*
+   * Decoding NSSAI
+   */
     case ATTACH_REQUEST_NSSAI_IEI:
      if ((decoded_result = decode_ue_req_nssai (&attach_request->uereqnssai, ATTACH_REQUEST_NSSAI_IEI, buffer + decoded, len - decoded)) <= 0) {
         return decoded_result;
       }
       decoded += decoded_result;
-      
-      attach_request->presencemask |= (1<<0);
       break;
 
     case ATTACH_REQUEST_OLD_PTMSI_SIGNATURE_IEI:

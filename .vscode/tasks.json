@@ -8,12 +8,13 @@
             "type": "shell",
             "command": "/home/andrey/openair-cn/scripts/build_mme",
             "args": [],
-            "group": "build",
-            "presentation": {
-                // Reveal the output only if unrecognized errors occur.
-                "reveal": "silent"
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "presentation": {
+                "reveal": "always"
+            },
             "problemMatcher": "$msCompile"
         }
     ]
