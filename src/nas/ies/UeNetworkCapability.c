@@ -118,7 +118,7 @@ int decode_ue_req_nssai(UeReqNssai *uereqnssai, uint8_t iei, uint8_t *buffer, ui
       OAILOG_INFO (LOG_NAS_EMM, "SNSSAI%d.SST=%u\n", i, uereqnssai->snssai[i].sst);
       decoded++;
       uereqnssai->snssai[i].sd = *(buffer + decoded);
-      OAILOG_INFO (LOG_NAS_EMM, "SNSSAI%d.SST=%u\n", i, uereqnssai->snssai[i].sd);
+      OAILOG_INFO (LOG_NAS_EMM, "SNSSAI%d.SD=%u\n", i, uereqnssai->snssai[i].sd);
       decoded++;
     }
   }
