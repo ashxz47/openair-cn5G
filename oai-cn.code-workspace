@@ -4,5 +4,11 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"array": "c",
+			"initializer_list": "c",
+			"utility": "c"
+		}
+	}
 }

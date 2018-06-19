@@ -11,3 +11,5 @@ openair-cn.creator
 openair-cn.creator.user
 openair-cn.files
 openair-cn.includes
+scripts/~/.vscode-root/*
+scripts/build_spgw1

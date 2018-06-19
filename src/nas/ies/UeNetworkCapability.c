@@ -105,16 +105,24 @@ int decode_ue_req_nssai(UeReqNssai *uereqnssai, uint8_t iei, uint8_t *buffer, ui
     }
 
   DECODE_U8 (buffer + decoded, ielen, decoded);
-  memset (uereqnssai, 0, sizeof (req_nssai_t));
+  memset (uereqnssai, 0, sizeof (UeReqNssai));
   OAILOG_INFO (LOG_NAS_EMM, "decode_ue_network_capability len = %d\n", ielen);
   CHECK_LENGTH_DECODER (len - decoded, ielen);
 
-  // TODO cycle to fill all 8 s-nssai
-  uereqnssai->snssai.sst = *(buffer + decoded);
-  decoded++;
-  uereqnssai->snssai.sd = *(buffer + decoded);
-  decoded++;
- 
+  // decode buffer
+  if (ielen > 0)
+  {
+    for (int i = 0; i < (ielen/2); i++)
+    {
+      uereqnssai->snssai[i].sst = *(buffer + decoded);
+      OAILOG_INFO (LOG_NAS_EMM, "SNSSAI%d.SST=%u\n", i, uereqnssai->snssai[i].sst);
+      decoded++;
+      uereqnssai->snssai[i].sd = *(buffer + decoded);
+      OAILOG_INFO (LOG_NAS_EMM, "SNSSAI%d.SST=%u\n", i, uereqnssai->snssai[i].sd);
+      decoded++;
+    }
+  }
+
   OAILOG_INFO (LOG_NAS_EMM, "uereqnssai decoded=%u\n", decoded);
 
   if ((ielen + 2) != decoded) {

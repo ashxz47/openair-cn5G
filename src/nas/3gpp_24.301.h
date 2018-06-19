@@ -320,8 +320,9 @@ typedef struct req_snssai {
 
 typedef struct {
   /* Requested Network slice selection assistant information - NSSAI */
-  req_snssai_t snssai;
-} req_nssai_t;
+  int size;
+  req_snssai_t snssai[8];
+} Req_Nssai;
 
 /* end of 5G element (23.501) */
 
