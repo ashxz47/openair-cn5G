@@ -106,7 +106,7 @@ int decode_ue_req_nssai(UeReqNssai *uereqnssai, uint8_t iei, uint8_t *buffer, ui
 
   DECODE_U8 (buffer + decoded, ielen, decoded);
   memset (uereqnssai, 0, sizeof (UeReqNssai));
-  OAILOG_INFO (LOG_NAS_EMM, "decode_ue_network_capability len = %d\n", ielen);
+  OAILOG_INFO (LOG_NAS_EMM, "decode_ue_nssai len = %d\n", ielen);
   CHECK_LENGTH_DECODER (len - decoded, ielen);
 
   // decode buffer
